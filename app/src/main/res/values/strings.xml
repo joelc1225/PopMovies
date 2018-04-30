@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pop Movies</string>
+    <string name="action_sort">Sort Order Settings</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="release_date">Release Date: </string>
+    <string name="vote_avg">Avg Viewer Rating: </string>
+    <string name="favorite_button">Favorite Button</string>
+    <string name="base_youtube_link">https://www.youtube.com/watch?v=</string>
+    <string name="fake_review">This is a fake review about a fake movie. I thought that the plot was a little bit convoluted and hard to follow. Nothing like the original film. The plot holes were hard to ignore and ultimately make you feel like you\'ve just wasted two hours of your life.</string>
+    <string name="favorite_label">Favorite:</string>
+    <string name="added_to_faves">Added to Favorites</string>
+    <string name="removed_from_faves">Removed from Favorites</string>
+    <string name="remove_alert_button">Remove</string>
+    <string-array name="sorting_array">
+        <item>Most Popular</item>
+        <item>Top Rated</item>
+        <item>Favorites</item>
+    </string-array>
+</resources>
