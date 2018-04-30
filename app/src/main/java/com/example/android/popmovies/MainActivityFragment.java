@@ -36,7 +36,7 @@ public class MainActivityFragment extends AppCompatActivity {
     public static final String BASE_URL_MOVIES_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated?";
 
     // TODO remember to remove API key before submitting project!!!! **************************
-    public static final String API_KEY = "api_key=INPUT API KEY HERE";
+    public static final String API_KEY = "api_key=2499d4a4f8ad842fb5ed41d5c6542d79";
 
     // adapters used to populate the gridView
     private static MovieAdapter movieAdapter;
