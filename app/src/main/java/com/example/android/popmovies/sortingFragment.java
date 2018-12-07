@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.widget.Toast;
 
 import static com.example.android.popmovies.MainActivityFragment.API_KEY;
@@ -50,6 +51,7 @@ public class sortingFragment extends DialogFragment {
                         } else {
                             MainActivityFragment.sortOrder = 0;
                             MainActivityFragment.gridView.setSelection(0);
+                            checkIfEmptyViewNeeded();
                             new MainActivityFragment.MovieDatabaseTask().execute(BASE_URL_MOVIES_POPULAR + API_KEY);
                         }
                         break;
@@ -60,6 +62,7 @@ public class sortingFragment extends DialogFragment {
                         } else {
                             MainActivityFragment.sortOrder = 1;
                             MainActivityFragment.gridView.setSelection(0);
+                            checkIfEmptyViewNeeded();
                             new MainActivityFragment.MovieDatabaseTask().execute(BASE_URL_MOVIES_TOP_RATED + API_KEY);
                         }
                         break;
@@ -70,6 +73,7 @@ public class sortingFragment extends DialogFragment {
                         } else {
                             MainActivityFragment.sortOrder = 2;
                             MainActivityFragment.gridView.setSelection(0);
+                            checkIfEmptyViewNeeded();
                             new MainActivityFragment.FavoriteDatabaseTask().execute(getActivity().getApplicationContext());
 
                         }
@@ -77,6 +81,13 @@ public class sortingFragment extends DialogFragment {
             }
         });
         return alertDialogBuilder.create();
+    }
+
+    private void checkIfEmptyViewNeeded() {
+        if (MainActivityFragment.mEmptyView.getVisibility() == View.VISIBLE &&
+                MainActivityFragment.mIsConnected) {
+            MainActivityFragment.mEmptyView.setVisibility(View.INVISIBLE);
+        }
     }
 
 }

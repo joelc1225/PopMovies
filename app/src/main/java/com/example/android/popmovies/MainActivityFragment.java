@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.android.popmovies.adapters.MovieAdapter;
 import com.example.android.popmovies.data.MovieContract;
@@ -35,8 +36,7 @@ public class MainActivityFragment extends AppCompatActivity {
 
     public static final String BASE_URL_MOVIES_TOP_RATED = "https://api.themoviedb.org/3/movie/top_rated?";
 
-    // TODO remember to remove API key before submitting project!!!! **************************
-    public static final String API_KEY = "api_key=***REMOVED***";
+    public static final String API_KEY = "api_key=" + BuildConfig.ApiKey;
 
     // adapters used to populate the gridView
     private static MovieAdapter movieAdapter;
@@ -46,6 +46,10 @@ public class MainActivityFragment extends AppCompatActivity {
     public static GridView gridView;
 
     private static List<Movie> movieList;
+
+    public static TextView mEmptyView;
+
+    public static boolean mIsConnected;
 
     Parcelable gridViewState;
 
@@ -61,28 +65,34 @@ public class MainActivityFragment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gridview_main);
 
+        Log.d("API KEY IS: ", API_KEY);
         getSupportActionBar().setHomeButtonEnabled(false);      // Disable the button
         getSupportActionBar().setDisplayHomeAsUpEnabled(false); // Remove the left caret
         getSupportActionBar().setDisplayShowHomeEnabled(false); // Remove the icon
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        mEmptyView = findViewById(R.id.emptyViewTv);
+        mEmptyView.setVisibility(View.INVISIBLE);
 
         movieAdapter = new MovieAdapter(getApplicationContext(), new ArrayList<Movie>());
-        gridView = (GridView) findViewById(R.id.gridView);
+        gridView = findViewById(R.id.gridView);
         gridView.setAdapter(movieAdapter);
 
         ConnectivityManager cm =
                 (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
+        mIsConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
 
         if (savedInstanceState == null) {
-            if (isConnected) {
+            if (mIsConnected) {
                 Log.d("IS CONNECTED", " ABOUT TO START MOVIE TASK");
                 Log.d("URL = ",  BASE_URL_MOVIES_POPULAR + API_KEY);
                 new MovieDatabaseTask().execute(BASE_URL_MOVIES_POPULAR + API_KEY);
+            } else {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mEmptyView.setVisibility(View.VISIBLE);
             }
         }
 

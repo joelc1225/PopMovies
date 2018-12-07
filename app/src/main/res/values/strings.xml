@@ -11,6 +11,7 @@
     <string name="added_to_faves">Added to Favorites</string>
     <string name="removed_from_faves">Removed from Favorites</string>
     <string name="remove_alert_button">Remove</string>
+    <string name="emptyViewText">OOPS! Something went wrong. Try again later</string>
     <string-array name="sorting_array">
         <item>Most Popular</item>
         <item>Top Rated</item>

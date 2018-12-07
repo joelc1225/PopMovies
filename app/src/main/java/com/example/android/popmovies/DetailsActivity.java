@@ -67,7 +67,7 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
         movie_id = selectedMovie.mMovie_id;
 
         // finds favorite button before we check shared prefs
-        favoriteButton = (ImageButton) findViewById(R.id.favoriteButton);
+        favoriteButton = findViewById(R.id.favoriteButton);
 
         // does some checks to prep the layout with for correct star color
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
@@ -132,7 +132,7 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
                 getString(R.string.vote_avg) + " " + String.valueOf(selectedMovie.mVoteAverage);
 
         // Set the data to the views
-        Picasso.with(getApplicationContext()).load(selectedMovie.mImagePath).into(posterImg);
+        Picasso.get().load(selectedMovie.mImagePath).into(posterImg);
         title.setText(selectedMovie.mTitle);
         releaseDate.setText(releaseDateString);
         voterAvg.setText(voteAvgString);
